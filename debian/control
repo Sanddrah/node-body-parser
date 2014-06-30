@@ -23,7 +23,7 @@ Depends:
  , node-type-is (>= 1.3.1)
  , node-bytes (>= 1.0.0)
  , node-media-typer (>= 0.2.0)
- , node-iconv-lite (>= 0.4.3)
+ , node-iconv (>= 2.1.4)
 Description: body parsing middleware - Node.js module
  body-parser is a Node.js module which provides connect middleware for parsing
  HTTP request bodies. It supports JSON and urlencoded formats and does not
