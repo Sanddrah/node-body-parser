@@ -1,0 +1,32 @@
+Source: node-body-parser
+Section: web
+Priority: extra
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Andrew Kelley <superjoe30@gmail.com>
+Build-Depends:
+ debhelper (>= 8)
+ , dh-buildinfo
+ , nodejs
+Standards-Version: 3.9.5
+Homepage: https://github.com/expressjs/body-parser
+Vcs-Git: git://anonscm.debian.org/pkg-javascript/node-body-parser.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-javascript/node-body-parser.git
+
+Package: node-body-parser
+Architecture: all
+Depends:
+ ${misc:Depends}
+ , nodejs
+ , node-depd (>= 0.3.0)
+ , node-qs (>= 0.6.6)
+ , node-raw-body (>= 1.2.2)
+ , node-type-is (>= 1.3.1)
+ , node-bytes (>= 1.0.0)
+ , node-media-typer (>= 0.2.0)
+ , node-iconv-lite (>= 0.4.3)
+Description: body parsing middleware - Node.js module
+ body-parser is a Node.js module which provides connect middleware for parsing
+ HTTP request bodies. It supports JSON and urlencoded formats and does not
+ support multipart requests.
+ .
+ Node.js is an event-based server-side JavaScript engine.

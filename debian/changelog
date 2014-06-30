@@ -1,0 +1,6 @@
+node-body-parser (1.4.3-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #753332)
+
+ -- Andrew Kelley <superjoe30@gmail.com>  Mon, 30 Jun 2014 16:52:37 +0000
+
