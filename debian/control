@@ -11,6 +11,7 @@ Standards-Version: 3.9.5
 Homepage: https://github.com/expressjs/body-parser
 Vcs-Git: git://anonscm.debian.org/pkg-javascript/node-body-parser.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-javascript/node-body-parser.git
+XS-Testsuite: autopkgtest
 
 Package: node-body-parser
 Architecture: all
