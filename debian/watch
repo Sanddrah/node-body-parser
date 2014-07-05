@@ -1,5 +1,5 @@
 version=3
 opts=\
-dversionmangle=s/\?(debian|dfsg|ds|deb)\d*$//,\
+dversionmangle=s/\+(debian|dfsg|ds|deb)(\.\d+)?$//,\
 filenamemangle=s/.*\/v?([\d\.-]+)\.tar\.gz/node-body-parser-$1.tar.gz/ \
  https://github.com/expressjs/body-parser/tags .*/archive/v?([\d\.]+).tar.gz
