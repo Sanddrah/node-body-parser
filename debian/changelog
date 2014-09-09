@@ -1,3 +1,9 @@
+node-body-parser (1.8.1-1) UNRELEASED; urgency=low
+
+  * Prepare for new upload
+
+ -- Andrew Kelley <superjoe30@gmail.com>  Tue, 09 Sep 2014 16:43:11 +0000
+
 node-body-parser (1.4.3-1) unstable; urgency=low
 
   * Initial release (Closes: #753332)
