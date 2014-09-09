@@ -1,2 +1,2 @@
-Tests: require
-Depends: node-body-parser
+Test-Command: nodejs -e "require('"'"'body-parser'"'"');"
+Depends: @
