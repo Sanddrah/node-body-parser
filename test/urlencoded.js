@@ -39,6 +39,15 @@ describe('bodyParser.urlencoded()', function(){
     test.expect(400, /content length/, done)
   })
 
+  it('should handle Content-Length: 0', function(done){
+    request(server)
+    .post('/')
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Content-Length', '0')
+    .send('')
+    .expect(200, '{}', done)
+  })
+
   it('should handle empty message-body', function(done){
     var server = createServer({ limit: '1kb' })
 
@@ -86,6 +95,22 @@ describe('bodyParser.urlencoded()', function(){
         .set('Content-Type', 'application/x-www-form-urlencoded')
         .send('user[name][first]=Tobi')
         .expect(200, '{"user":{"name":{"first":"Tobi"}}}', done)
+      })
+
+      it('should parse fully-encoded extended syntax', function(done){
+        request(server)
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send('user%5Bname%5D%5Bfirst%5D=Tobi')
+        .expect(200, '{"user":{"name":{"first":"Tobi"}}}', done)
+      })
+
+      it('should parse array of objects syntax', function(done){
+        request(server)
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send('foo[0][bar]=baz&foo[0][fizz]=buzz')
+        .expect(200, '{"foo":[{"bar":"baz","fizz":"buzz"}]}', done)
       })
     })
   })
@@ -192,6 +217,114 @@ describe('bodyParser.urlencoded()', function(){
       test.write(buf)
       test.write(buf)
       test.expect(413, done)
+    })
+  })
+
+  describe('with parameterLimit option', function () {
+    describe('with extended: false', function () {
+      it('should reject 0', function () {
+        assert.throws(createServer.bind(null, { extended: false, parameterLimit: 0 }), /option parameterLimit/)
+      })
+
+      it('should reject string', function () {
+        assert.throws(createServer.bind(null, { extended: false, parameterLimit: 'beep' }), /option parameterLimit/)
+      })
+
+      it('should 415 if over limit', function (done) {
+        request(createServer({ extended: false, parameterLimit: 10 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(11))
+        .expect(413, /too many parameters/, done)
+      })
+
+      it('should work when at the limit', function (done) {
+        request(createServer({ extended: false, parameterLimit: 10 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(10))
+        .expect(expectKeyCount(10))
+        .expect(200, done)
+      })
+
+      it('should work if number is floating point', function (done) {
+        request(createServer({ extended: false, parameterLimit: 10.1 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(11))
+        .expect(413, /too many parameters/, done)
+      })
+
+      it('should work with large limit', function (done) {
+        request(createServer({ extended: false, parameterLimit: 5000 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(5000))
+        .expect(expectKeyCount(5000))
+        .expect(200, done)
+      })
+
+      it('should work with Infinity limit', function (done) {
+        request(createServer({ extended: false, parameterLimit: Infinity }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(10000))
+        .expect(expectKeyCount(10000))
+        .expect(200, done)
+      })
+    })
+
+    describe('with extended: true', function () {
+      it('should reject 0', function () {
+        assert.throws(createServer.bind(null, { extended: true, parameterLimit: 0 }), /option parameterLimit/)
+      })
+
+      it('should reject string', function () {
+        assert.throws(createServer.bind(null, { extended: true, parameterLimit: 'beep' }), /option parameterLimit/)
+      })
+
+      it('should 415 if over limit', function (done) {
+        request(createServer({ extended: true, parameterLimit: 10 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(11))
+        .expect(413, /too many parameters/, done)
+      })
+
+      it('should work when at the limit', function (done) {
+        request(createServer({ extended: true, parameterLimit: 10 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(10))
+        .expect(expectKeyCount(10))
+        .expect(200, done)
+      })
+
+      it('should work if number is floating point', function (done) {
+        request(createServer({ extended: true, parameterLimit: 10.1 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(11))
+        .expect(413, /too many parameters/, done)
+      })
+
+      it('should work with large limit', function (done) {
+        request(createServer({ extended: true, parameterLimit: 5000 }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(5000))
+        .expect(expectKeyCount(5000))
+        .expect(200, done)
+      })
+
+      it('should work with Infinity limit', function (done) {
+        request(createServer({ extended: true, parameterLimit: Infinity }))
+        .post('/')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send(createManyParams(10000))
+        .expect(expectKeyCount(10000))
+        .expect(200, done)
+      })
     })
   })
 
@@ -355,6 +488,23 @@ describe('bodyParser.urlencoded()', function(){
   })
 })
 
+function createManyParams(count) {
+  var str = ''
+
+  if (count === 0) {
+    return str
+  }
+
+  str += '0=0'
+
+  for (var i = 1; i < count; i++) {
+    var n = i.toString(36)
+    str += '&' + n + '=' + n
+  }
+
+  return str
+}
+
 function createServer(opts){
   var _bodyParser = bodyParser.urlencoded(opts)
 
@@ -364,4 +514,10 @@ function createServer(opts){
       res.end(err ? err.message : JSON.stringify(req.body));
     })
   })
+}
+
+function expectKeyCount(count) {
+  return function (res) {
+    assert.equal(Object.keys(JSON.parse(res.text)).length, count)
+  }
 }
