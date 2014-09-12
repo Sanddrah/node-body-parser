@@ -1,8 +1,11 @@
 node-body-parser (1.8.1-1) UNRELEASED; urgency=low
 
-  * Prepare for new upload
+  * Update to upstream 1.8.1
+  * Simpler autopkgtest
+  * Refresh iconv patch
+  * Add dependency on node-on-finished
 
- -- Andrew Kelley <superjoe30@gmail.com>  Tue, 09 Sep 2014 16:43:11 +0000
+ -- Andrew Kelley <superjoe30@gmail.com>  Fri, 12 Sep 2014 05:46:40 +0000
 
 node-body-parser (1.4.3-1) unstable; urgency=low
 
