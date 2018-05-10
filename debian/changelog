@@ -1,3 +1,13 @@
+node-body-parser (1.18.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+  * Bump compat and policy
+  * Improve rules
+  * Improve cli
+
+ -- Bastien Roucariès <rouca@debian.org>  Thu, 10 May 2018 15:54:36 +0200
+
 node-body-parser (1.8.1-1) unstable; urgency=low
 
   * Update to upstream 1.8.1

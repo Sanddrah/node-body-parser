@@ -1,31 +1,45 @@
 Source: node-body-parser
-Section: web
-Priority: extra
+Section: javascript
+Priority: optional
 Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
 Uploaders: Andrew Kelley <superjoe30@gmail.com>
 Build-Depends:
- debhelper (>= 8)
+ debhelper (>= 11)
  , dh-buildinfo
- , nodejs
-Standards-Version: 3.9.5
+ , nodejs (>= 6)
+ , node-bytes (>= 3.0.0) <!nocheck>
+ , node-content-type (>= 1.0.2) <!nocheck>
+ , node-debug (>= 2.6.9) <!nocheck>
+ , node-depd (>= 1.1.1) <!nocheck>
+ , node-http-errors (>= 1.6.2) <!nocheck>
+ , node-iconv (>= 2.3.0) <!nocheck>
+ , node-on-finished (>= 2.1.0) <!nocheck>
+ , node-qs (>= 2.2) <!nocheck>
+ , node-raw-body (>= 1.2.0) <!nocheck>
+ , node-type-is (>= 1.5) <!nocheck>
+ , mocha (>= 4) <!nocheck>
+ , node-supertest (>= 0.14) <!nocheck>
+ , node-safe-buffer (>=5.1.1) <!nocheck>
+Standards-Version: 4.1.4
 Homepage: https://github.com/expressjs/body-parser
-Vcs-Git: git://anonscm.debian.org/pkg-javascript/node-body-parser.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-javascript/node-body-parser.git
-XS-Testsuite: autopkgtest
+Vcs-Git: https://salsa.debian.org/js-team/node-body-parser.git
+Vcs-Browser: https://salsa.debian.org/js-team/node-body-parser
 
 Package: node-body-parser
 Architecture: all
 Depends:
  ${misc:Depends}
  , nodejs
- , node-depd (>= 0.3.0)
- , node-qs (>= 0.6.5)
- , node-raw-body (>= 1.2.0)
- , node-type-is (>= 1.3.1)
- , node-bytes (>= 1.0.0)
- , node-media-typer (>= 0.2.0)
- , node-iconv (>= 2.1.4)
+ , node-bytes (>= 3.0.0)
+ , node-content-type (>= 1.0.2)
+ , node-debug (>= 2.6.9)
+ , node-depd (>= 1.1.1)
+ , node-http-errors (>= 1.6.2)
+ , node-iconv (>= 2.3.0)
  , node-on-finished (>= 2.1.0)
+ , node-qs (>= 2.2)
+ , node-raw-body (>= 1.2.0)
+ , node-type-is (>= 1.5)
 Description: body parsing middleware - Node.js module
  body-parser is a Node.js module which provides connect middleware for parsing
  HTTP request bodies. It supports JSON and urlencoded formats and does not
