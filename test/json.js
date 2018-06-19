@@ -9,34 +9,34 @@ var bodyParser = require('..')
 describe('bodyParser.json()', function () {
   it('should parse JSON', function (done) {
     request(createServer())
-    .post('/')
-    .set('Content-Type', 'application/json')
-    .send('{"user":"tobi"}')
-    .expect(200, '{"user":"tobi"}', done)
+      .post('/')
+      .set('Content-Type', 'application/json')
+      .send('{"user":"tobi"}')
+      .expect(200, '{"user":"tobi"}', done)
   })
 
   it('should handle Content-Length: 0', function (done) {
     request(createServer())
-    .get('/')
-    .set('Content-Type', 'application/json')
-    .set('Content-Length', '0')
-    .expect(200, '{}', done)
+      .get('/')
+      .set('Content-Type', 'application/json')
+      .set('Content-Length', '0')
+      .expect(200, '{}', done)
   })
 
   it('should handle empty message-body', function (done) {
     request(createServer())
-    .get('/')
-    .set('Content-Type', 'application/json')
-    .set('Transfer-Encoding', 'chunked')
-    .expect(200, '{}', done)
+      .get('/')
+      .set('Content-Type', 'application/json')
+      .set('Transfer-Encoding', 'chunked')
+      .expect(200, '{}', done)
   })
 
   it('should handle no message-body', function (done) {
     request(createServer())
-    .get('/')
-    .set('Content-Type', 'application/json')
-    .unset('Transfer-Encoding')
-    .expect(200, '{}', done)
+      .get('/')
+      .set('Content-Type', 'application/json')
+      .unset('Transfer-Encoding')
+      .expect(200, '{}', done)
   })
 
   it('should 400 when invalid content-length', function (done) {
@@ -47,10 +47,10 @@ describe('bodyParser.json()', function () {
     })
 
     request(server)
-    .post('/')
-    .set('Content-Type', 'application/json')
-    .send('{"str":')
-    .expect(400, /content length/, done)
+      .post('/')
+      .set('Content-Type', 'application/json')
+      .send('{"str":')
+      .expect(400, /content length/, done)
   })
 
   it('should handle duplicated middleware', function (done) {
@@ -63,10 +63,10 @@ describe('bodyParser.json()', function () {
     })
 
     request(server)
-    .post('/')
-    .set('Content-Type', 'application/json')
-    .send('{"user":"tobi"}')
-    .expect(200, '{"user":"tobi"}', done)
+      .post('/')
+      .set('Content-Type', 'application/json')
+      .send('{"user":"tobi"}')
+      .expect(200, '{"user":"tobi"}', done)
   })
 
   describe('when JSON is invalid', function () {
@@ -76,36 +76,36 @@ describe('bodyParser.json()', function () {
 
     it('should 400 for bad token', function (done) {
       request(this.server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send('{:')
-      .expect(400, parseError('{:'), done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{:')
+        .expect(400, parseError('{:'), done)
     })
 
     it('should 400 for incomplete', function (done) {
       request(this.server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send('{"user"')
-      .expect(400, parseError('{"user"'), done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{"user"')
+        .expect(400, parseError('{"user"'), done)
     })
 
     it('should error with type = "entity.parse.failed"', function (done) {
       request(this.server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('X-Error-Property', 'type')
-      .send(' {"user"')
-      .expect(400, 'entity.parse.failed', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('X-Error-Property', 'type')
+        .send(' {"user"')
+        .expect(400, 'entity.parse.failed', done)
     })
 
     it('should include original body on error object', function (done) {
       request(this.server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('X-Error-Property', 'body')
-      .send(' {"user"')
-      .expect(400, ' {"user"', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('X-Error-Property', 'body')
+        .send(' {"user"')
+        .expect(400, ' {"user"', done)
     })
   })
 
@@ -113,22 +113,22 @@ describe('bodyParser.json()', function () {
     it('should 413 when over limit with Content-Length', function (done) {
       var buf = Buffer.alloc(1024, '.')
       request(createServer({ limit: '1kb' }))
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('Content-Length', '1034')
-      .send(JSON.stringify({ str: buf.toString() }))
-      .expect(413, done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('Content-Length', '1034')
+        .send(JSON.stringify({ str: buf.toString() }))
+        .expect(413, done)
     })
 
     it('should error with type = "entity.too.large"', function (done) {
       var buf = Buffer.alloc(1024, '.')
       request(createServer({ limit: '1kb' }))
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('Content-Length', '1034')
-      .set('X-Error-Property', 'type')
-      .send(JSON.stringify({ str: buf.toString() }))
-      .expect(413, 'entity.too.large', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('Content-Length', '1034')
+        .set('X-Error-Property', 'type')
+        .send(JSON.stringify({ str: buf.toString() }))
+        .expect(413, 'entity.too.large', done)
     })
 
     it('should 413 when over limit with chunked encoding', function (done) {
@@ -145,10 +145,10 @@ describe('bodyParser.json()', function () {
     it('should accept number of bytes', function (done) {
       var buf = Buffer.alloc(1024, '.')
       request(createServer({ limit: 1024 }))
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send(JSON.stringify({ str: buf.toString() }))
-      .expect(413, done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify({ str: buf.toString() }))
+        .expect(413, done)
     })
 
     it('should not change when options altered', function (done) {
@@ -159,10 +159,10 @@ describe('bodyParser.json()', function () {
       options.limit = '100kb'
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send(JSON.stringify({ str: buf.toString() }))
-      .expect(413, done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify({ str: buf.toString() }))
+        .expect(413, done)
     })
 
     it('should not hang response', function (done) {
@@ -215,10 +215,10 @@ describe('bodyParser.json()', function () {
 
       it('should 400 on primitives', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('true')
-        .expect(400, parseError('#rue').replace('#', 't'), done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('true')
+          .expect(400, parseError('#rue').replace('#', 't'), done)
       })
     })
 
@@ -229,10 +229,10 @@ describe('bodyParser.json()', function () {
 
       it('should parse primitives', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('true')
-        .expect(200, 'true', done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('true')
+          .expect(200, 'true', done)
       })
     })
 
@@ -243,35 +243,46 @@ describe('bodyParser.json()', function () {
 
       it('should not parse primitives', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('true')
-        .expect(400, parseError('#rue').replace('#', 't'), done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('true')
+          .expect(400, parseError('#rue').replace('#', 't'), done)
       })
 
       it('should not parse primitives with leading whitespaces', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('    true')
-        .expect(400, parseError('    #rue').replace('#', 't'), done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('    true')
+          .expect(400, parseError('    #rue').replace('#', 't'), done)
       })
 
       it('should allow leading whitespaces in JSON', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('   { "user": "tobi" }')
-        .expect(200, '{"user":"tobi"}', done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('   { "user": "tobi" }')
+          .expect(200, '{"user":"tobi"}', done)
       })
 
       it('should error with type = "entity.parse.failed"', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .set('X-Error-Property', 'type')
-        .send('true')
-        .expect(400, 'entity.parse.failed', done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .set('X-Error-Property', 'type')
+          .send('true')
+          .expect(400, 'entity.parse.failed', done)
+      })
+
+      it('should include correct message in stack trace', function (done) {
+        request(this.server)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .set('X-Error-Property', 'stack')
+          .send('true')
+          .expect(400)
+          .expect(shouldContainInBody(parseError('#rue').replace('#', 't')))
+          .end(done)
       })
     })
   })
@@ -284,18 +295,50 @@ describe('bodyParser.json()', function () {
 
       it('should parse JSON for custom type', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/vnd.api+json')
-        .send('{"user":"tobi"}')
-        .expect(200, '{"user":"tobi"}', done)
+          .post('/')
+          .set('Content-Type', 'application/vnd.api+json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{"user":"tobi"}', done)
       })
 
       it('should ignore standard type', function (done) {
         request(this.server)
-        .post('/')
-        .set('Content-Type', 'application/json')
-        .send('{"user":"tobi"}')
-        .expect(200, '{}', done)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{}', done)
+      })
+    })
+
+    describe('when ["application/json", "application/vnd.api+json"]', function () {
+      before(function () {
+        this.server = createServer({
+          type: ['application/json', 'application/vnd.api+json']
+        })
+      })
+
+      it('should parse JSON for "application/json"', function (done) {
+        request(this.server)
+          .post('/')
+          .set('Content-Type', 'application/json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{"user":"tobi"}', done)
+      })
+
+      it('should parse JSON for "application/vnd.api+json"', function (done) {
+        request(this.server)
+          .post('/')
+          .set('Content-Type', 'application/vnd.api+json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{"user":"tobi"}', done)
+      })
+
+      it('should ignore "application/x-json"', function (done) {
+        request(this.server)
+          .post('/')
+          .set('Content-Type', 'application/x-json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{}', done)
       })
     })
 
@@ -308,10 +351,10 @@ describe('bodyParser.json()', function () {
         }
 
         request(server)
-        .post('/')
-        .set('Content-Type', 'application/vnd.api+json')
-        .send('{"user":"tobi"}')
-        .expect(200, '{"user":"tobi"}', done)
+          .post('/')
+          .set('Content-Type', 'application/vnd.api+json')
+          .send('{"user":"tobi"}')
+          .expect(200, '{"user":"tobi"}', done)
       })
 
       it('should work without content-type', function (done) {
@@ -334,8 +377,8 @@ describe('bodyParser.json()', function () {
         }
 
         request(server)
-        .get('/')
-        .expect(200, done)
+          .get('/')
+          .expect(200, done)
       })
     })
   })
@@ -352,10 +395,10 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send('["tobi"]')
-      .expect(403, 'no arrays', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('["tobi"]')
+        .expect(403, 'no arrays', done)
     })
 
     it('should error with type = "entity.verify.failed"', function (done) {
@@ -364,11 +407,11 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('X-Error-Property', 'type')
-      .send('["tobi"]')
-      .expect(403, 'entity.verify.failed', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('X-Error-Property', 'type')
+        .send('["tobi"]')
+        .expect(403, 'entity.verify.failed', done)
     })
 
     it('should allow custom codes', function (done) {
@@ -380,10 +423,10 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send('["tobi"]')
-      .expect(400, 'no arrays', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('["tobi"]')
+        .expect(400, 'no arrays', done)
     })
 
     it('should allow custom type', function (done) {
@@ -395,11 +438,11 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('X-Error-Property', 'type')
-      .send('["tobi"]')
-      .expect(403, 'foo.bar', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('X-Error-Property', 'type')
+        .send('["tobi"]')
+        .expect(403, 'foo.bar', done)
     })
 
     it('should include original body on error object', function (done) {
@@ -408,11 +451,11 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .set('X-Error-Property', 'body')
-      .send('["tobi"]')
-      .expect(403, '["tobi"]', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .set('X-Error-Property', 'body')
+        .send('["tobi"]')
+        .expect(403, '["tobi"]', done)
     })
 
     it('should allow pass-through', function (done) {
@@ -421,10 +464,10 @@ describe('bodyParser.json()', function () {
       }})
 
       request(server)
-      .post('/')
-      .set('Content-Type', 'application/json')
-      .send('{"user":"tobi"}')
-      .expect(200, '{"user":"tobi"}', done)
+        .post('/')
+        .set('Content-Type', 'application/json')
+        .send('{"user":"tobi"}')
+        .expect(200, '{"user":"tobi"}', done)
     })
 
     it('should work with different charsets', function (done) {
@@ -605,5 +648,12 @@ function parseError (str) {
     JSON.parse(str); throw new SyntaxError('strict violation')
   } catch (e) {
     return e.message
+  }
+}
+
+function shouldContainInBody (str) {
+  return function (res) {
+    assert.ok(res.text.indexOf(str) !== -1,
+      'expected \'' + res.text + '\' to contain \'' + str + '\'')
   }
 }
