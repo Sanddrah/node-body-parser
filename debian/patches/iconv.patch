@@ -63,10 +63,10 @@ Index: node-body-parser/package.json
 +++ node-body-parser/package.json
 @@ -14,7 +14,7 @@
      "debug": "2.6.9",
-     "depd": "~1.1.1",
-     "http-errors": "~1.6.2",
--    "iconv-lite": "0.4.19",
-+    "iconv": ">= 2",
+     "depd": "~1.1.2",
+     "http-errors": "~1.6.3",
+-    "iconv-lite": "0.4.23",
++    "iconv": ">2",
      "on-finished": "~2.3.0",
-     "qs": "6.5.1",
-     "raw-body": "2.3.2",
+     "qs": "6.5.2",
+     "raw-body": "2.3.3",
