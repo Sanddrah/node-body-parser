@@ -1,3 +1,13 @@
+node-body-parser (1.18.3-2) unstable; urgency=medium
+
+  * Declare compliance with policy 4.3.0
+  * Replace Andrew by myself in uploaders list. Thanks for your work
+    (Closes: #909868)
+  * Remove unneeded dependency versions
+  * Add upstream/metadata
+
+ -- Xavier Guimard <yadd@debian.org>  Fri, 25 Jan 2019 11:36:15 +0100
+
 node-body-parser (1.18.3-1) unstable; urgency=medium
 
   * Team upload
