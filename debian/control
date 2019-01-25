@@ -2,7 +2,7 @@ Source: node-body-parser
 Section: javascript
 Priority: optional
 Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
-Uploaders: Andrew Kelley <superjoe30@gmail.com>
+Uploaders: Xavier Guimard <yadd@debian.org>
 Build-Depends:
  debhelper (>= 11)
  , dh-buildinfo
