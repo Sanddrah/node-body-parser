@@ -20,7 +20,7 @@ Build-Depends:
  , mocha (>= 4) <!nocheck>
  , node-supertest (>= 0.14) <!nocheck>
  , node-safe-buffer (>=5.1.1) <!nocheck>
-Standards-Version: 4.1.4
+Standards-Version: 4.3.0
 Homepage: https://github.com/expressjs/body-parser
 Vcs-Git: https://salsa.debian.org/js-team/node-body-parser.git
 Vcs-Browser: https://salsa.debian.org/js-team/node-body-parser
