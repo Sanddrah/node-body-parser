@@ -1,5 +1,0 @@
-Tests: require
-Depends: node-body-parser, nodejs (>=6)
-
-Tests: runtestsuite
-Depends: node-body-parser, nodejs (>=6), mocha (>= 4), node-supertest (>= 0.14), node-safe-buffer (>= 5.1.1)
