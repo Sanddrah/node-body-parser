@@ -4,10 +4,8 @@ Description: use iconv instead of iconv-lite
 Author: Andrew Kelley <superjoe30@gmail.com>
 Forwarded: not-needed
 
-Index: node-body-parser/lib/read.js
-===================================================================
---- node-body-parser.orig/lib/read.js
-+++ node-body-parser/lib/read.js
+--- a/lib/read.js
++++ b/lib/read.js
 @@ -13,7 +13,7 @@
  
  var createError = require('http-errors')
@@ -17,7 +15,7 @@ Index: node-body-parser/lib/read.js
  var onFinished = require('on-finished')
  var zlib = require('zlib')
  
-@@ -65,7 +65,7 @@ function read (req, res, next, parse, de
+@@ -65,7 +65,7 @@
      : encoding
  
    // assert charset is supported
@@ -26,7 +24,7 @@ Index: node-body-parser/lib/read.js
      return next(createError(415, 'unsupported charset "' + encoding.toUpperCase() + '"', {
        charset: encoding.toLowerCase(),
        type: 'charset.unsupported'
-@@ -116,7 +116,7 @@ function read (req, res, next, parse, de
+@@ -116,7 +116,7 @@
      try {
        debug('parse body')
        str = typeof body !== 'string' && encoding !== null
@@ -35,7 +33,7 @@ Index: node-body-parser/lib/read.js
          : body
        req.body = parse(str)
      } catch (err) {
-@@ -131,6 +131,21 @@ function read (req, res, next, parse, de
+@@ -131,6 +131,21 @@
    })
  }
  
@@ -57,16 +55,14 @@ Index: node-body-parser/lib/read.js
  /**
   * Get the content stream of the request.
   *
-Index: node-body-parser/package.json
-===================================================================
---- node-body-parser.orig/package.json
-+++ node-body-parser/package.json
+--- a/package.json
++++ b/package.json
 @@ -14,7 +14,7 @@
      "debug": "2.6.9",
      "depd": "~1.1.2",
-     "http-errors": "~1.6.3",
--    "iconv-lite": "0.4.23",
+     "http-errors": "1.7.2",
+-    "iconv-lite": "0.4.24",
 +    "iconv": ">2",
      "on-finished": "~2.3.0",
-     "qs": "6.5.2",
-     "raw-body": "2.3.3",
+     "qs": "6.7.0",
+     "raw-body": "2.4.0",
