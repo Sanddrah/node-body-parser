@@ -156,9 +156,9 @@ describe('bodyParser.urlencoded()', function () {
           .send(str)
           .expect(function (res) {
             var obj = JSON.parse(res.text)
-            assert.equal(Object.keys(obj).length, 1)
-            assert.equal(Array.isArray(obj.f), true)
-            assert.equal(obj.f.length, 500)
+            assert.strictEqual(Object.keys(obj).length, 1)
+            assert.strictEqual(Array.isArray(obj.f), true)
+            assert.strictEqual(obj.f.length, 500)
           })
           .expect(200, done)
       })
@@ -167,8 +167,8 @@ describe('bodyParser.urlencoded()', function () {
         request(this.server)
           .post('/')
           .set('Content-Type', 'application/x-www-form-urlencoded')
-          .send('foo[0][bar]=baz&foo[0][fizz]=buzz')
-          .expect(200, '{"foo":[{"bar":"baz","fizz":"buzz"}]}', done)
+          .send('foo[0][bar]=baz&foo[0][fizz]=buzz&foo[]=done!')
+          .expect(200, '{"foo":[{"bar":"baz","fizz":"buzz"},"done!"]}', done)
       })
 
       it('should parse deep object', function (done) {
@@ -186,13 +186,13 @@ describe('bodyParser.urlencoded()', function () {
           .send(str)
           .expect(function (res) {
             var obj = JSON.parse(res.text)
-            assert.equal(Object.keys(obj).length, 1)
-            assert.equal(typeof obj.foo, 'object')
+            assert.strictEqual(Object.keys(obj).length, 1)
+            assert.strictEqual(typeof obj.foo, 'object')
 
             var depth = 0
             var ref = obj.foo
             while ((ref = ref.p)) { depth++ }
-            assert.equal(depth, 500)
+            assert.strictEqual(depth, 500)
           })
           .expect(200, done)
       })
@@ -519,9 +519,9 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should error from verify', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         if (buf[0] === 0x20) throw new Error('no leading space')
-      }})
+      } })
 
       request(server)
         .post('/')
@@ -531,9 +531,9 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should error with type = "entity.verify.failed"', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         if (buf[0] === 0x20) throw new Error('no leading space')
-      }})
+      } })
 
       request(server)
         .post('/')
@@ -544,12 +544,12 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should allow custom codes', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         if (buf[0] !== 0x20) return
         var err = new Error('no leading space')
         err.status = 400
         throw err
-      }})
+      } })
 
       request(server)
         .post('/')
@@ -559,12 +559,12 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should allow custom type', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         if (buf[0] !== 0x20) return
         var err = new Error('no leading space')
         err.type = 'foo.bar'
         throw err
-      }})
+      } })
 
       request(server)
         .post('/')
@@ -575,9 +575,9 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should allow pass-through', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         if (buf[0] === 0x5b) throw new Error('no arrays')
-      }})
+      } })
 
       request(server)
         .post('/')
@@ -587,9 +587,9 @@ describe('bodyParser.urlencoded()', function () {
     })
 
     it('should 415 on unknown charset prior to verify', function (done) {
-      var server = createServer({verify: function (req, res, buf) {
+      var server = createServer({ verify: function (req, res, buf) {
         throw new Error('unexpected verify call')
-      }})
+      } })
 
       var test = request(server).post('/')
       test.set('Content-Type', 'application/x-www-form-urlencoded; charset=x-bogus')
@@ -724,6 +724,6 @@ function createServer (opts) {
 
 function expectKeyCount (count) {
   return function (res) {
-    assert.equal(Object.keys(JSON.parse(res.text)).length, count)
+    assert.strictEqual(Object.keys(JSON.parse(res.text)).length, count)
   }
 }
