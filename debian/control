@@ -19,7 +19,7 @@ Build-Depends: debhelper-compat (= 12),
                mocha (>= 4) <!nocheck>,
                node-supertest <!nocheck>,
                node-safe-buffer <!nocheck>
-Standards-Version: 4.3.0
+Standards-Version: 4.4.1
 Vcs-Browser: https://salsa.debian.org/js-team/node-body-parser
 Vcs-Git: https://salsa.debian.org/js-team/node-body-parser.git
 Homepage: https://github.com/expressjs/body-parser
