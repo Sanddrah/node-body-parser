@@ -1,3 +1,15 @@
+node-body-parser (1.19.0-1) unstable; urgency=medium
+
+  * Bump debhelper compatibility level to 12
+  * Declare compliance with policy 4.4.1
+  * Add "Rules-Requires-Root: no"
+  * Add debian/gbp.conf
+  * Switch test and install to pkg-js-tools
+  * New upstream version 1.19.0
+  * Refresh patch
+
+ -- Xavier Guimard <yadd@debian.org>  Mon, 28 Oct 2019 13:50:02 +0100
+
 node-body-parser (1.18.3-2) unstable; urgency=medium
 
   * Declare compliance with policy 4.3.0
