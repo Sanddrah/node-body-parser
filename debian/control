@@ -18,7 +18,7 @@ Build-Depends: debhelper-compat (= 12),
                node-raw-body <!nocheck>,
                node-type-is <!nocheck>,
                mocha (>= 4) <!nocheck>,
-               node-supertest <!nocheck>,
+               node-supertest (>= 4.0.2) <!nocheck>,
                node-safe-buffer <!nocheck>,
                pkg-js-tools (>= 0.9.12~)
 Standards-Version: 4.4.1
