@@ -3,6 +3,7 @@ node-body-parser (1.19.0-3) UNRELEASED; urgency=low
   * Set upstream metadata fields: Bug-Submit.
   * Remove obsolete fields Contact, Name from debian/upstream/metadata (already
     present in machine-readable debian/copyright).
+  * Update standards version to 4.5.0, no changes needed.
 
  -- Debian Janitor <janitor@jelmer.uk>  Sat, 11 Jul 2020 12:44:28 -0000
 
