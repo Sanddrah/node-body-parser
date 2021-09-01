@@ -4,7 +4,7 @@ Uploaders: Xavier Guimard <yadd@debian.org>
 Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
 Priority: optional
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 13),
                dh-buildinfo,
                nodejs,
                node-bytes <!nocheck>,
