@@ -1,3 +1,12 @@
+node-body-parser (1.19.0-4) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster
+  * Bump debhelper from old 12 to 13.
+  * Update standards version to 4.5.1, no changes needed.
+
+ -- Jelmer Vernooĳ <jelmer@debian.org>  Wed, 15 Sep 2021 10:46:47 +0100
+
 node-body-parser (1.19.0-3) unstable; urgency=medium
 
   [ Debian Janitor ]
