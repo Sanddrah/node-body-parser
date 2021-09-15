@@ -17,7 +17,7 @@ Build-Depends: debhelper-compat (= 13),
                node-qs <!nocheck>,
                node-raw-body <!nocheck>,
                node-type-is <!nocheck>,
-               mocha (>= 4) <!nocheck>,
+               mocha <!nocheck>,
                node-supertest (>= 4.0.2) <!nocheck>,
                node-safe-buffer <!nocheck>,
                pkg-js-tools (>= 0.9.12~)
