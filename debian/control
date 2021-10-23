@@ -20,7 +20,7 @@ Build-Depends: debhelper-compat (= 13),
                mocha <!nocheck>,
                node-supertest (>= 4.0.2) <!nocheck>,
                node-safe-buffer <!nocheck>,
-               pkg-js-tools (>= 0.9.12~)
+               dh-sequence-nodejs
 Standards-Version: 4.6.0
 Vcs-Browser: https://salsa.debian.org/js-team/node-body-parser
 Vcs-Git: https://salsa.debian.org/js-team/node-body-parser.git
