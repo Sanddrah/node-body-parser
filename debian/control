@@ -1,6 +1,6 @@
 Source: node-body-parser
 Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
-Uploaders: Xavier Guimard <yadd@debian.org>
+Uploaders: Yadd <yadd@debian.org>
 Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
 Priority: optional
