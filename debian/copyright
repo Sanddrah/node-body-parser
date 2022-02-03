@@ -2,6 +2,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: body-parser
 Upstream-Contact: https://github.com/expressjs/body-parser/issues
 Source: https://github.com/expressjs/body-parser
+ https://registry.npmjs.org/@types/body-parser
 
 Files: *
 Copyright: 2014 Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)
@@ -9,6 +10,10 @@ License: Expat
 
 Files: debian/*
 Copyright: 2014 Andrew Kelley <superjoe30@gmail.com>
+License: Expat
+
+Files: types-*/*
+Copyright: Microsoft Corporation
 License: Expat
 
 License: Expat
@@ -31,4 +36,3 @@ License: Expat
  ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
-
