@@ -1,10 +1,13 @@
-node-body-parser (1.19.0-6) UNRELEASED; urgency=medium
+node-body-parser (1.19.1+~1.19.2-1) unstable; urgency=medium
 
   * Team upload
   * Drop dependency to nodejs
   * Embed typescript declarations (Closes: #1004889)
+  * New upstream version 1.19.1+~1.19.2
+  * Replace dependency to node-iconv by dependency to node-iconv-lite and drop
+    related patch
 
- -- Yadd <yadd@debian.org>  Thu, 03 Feb 2022 06:09:30 +0100
+ -- Yadd <yadd@debian.org>  Thu, 03 Feb 2022 06:13:46 +0100
 
 node-body-parser (1.19.0-5) unstable; urgency=medium
 
