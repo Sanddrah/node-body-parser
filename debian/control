@@ -5,8 +5,6 @@ Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
 Priority: optional
 Build-Depends: debhelper-compat (= 13),
-               dh-buildinfo,
-               nodejs,
                node-bytes <!nocheck>,
                node-content-type <!nocheck>,
                node-debug <!nocheck>,
@@ -30,7 +28,6 @@ Rules-Requires-Root: no
 Package: node-body-parser
 Architecture: all
 Depends: ${misc:Depends},
-         nodejs,
          node-bytes,
          node-content-type,
          node-debug,
