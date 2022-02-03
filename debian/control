@@ -11,7 +11,7 @@ Build-Depends: debhelper-compat (= 13)
  , node-debug <!nocheck>
  , node-depd <!nocheck>
  , node-http-errors <!nocheck>
- , node-iconv <!nocheck>
+ , node-iconv-lite <!nocheck>
  , node-on-finished <!nocheck>
  , node-qs <!nocheck>
  , node-raw-body <!nocheck>
@@ -33,7 +33,7 @@ Depends: ${misc:Depends}
  , node-debug
  , node-depd
  , node-http-errors
- , node-iconv
+ , node-iconv-lite
  , node-on-finished
  , node-qs
  , node-raw-body
