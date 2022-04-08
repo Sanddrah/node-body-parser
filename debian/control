@@ -18,6 +18,8 @@ Build-Depends: debhelper-compat (= 13)
  , node-safe-buffer <!nocheck>
  , node-supertest (>= 4.0.2) <!nocheck>
  , node-type-is <!nocheck>
+ , node-destroy <!nocheck>
+ , node-unpipe <!nocheck>
 Standards-Version: 4.6.0
 Vcs-Browser: https://salsa.debian.org/js-team/node-body-parser
 Vcs-Git: https://salsa.debian.org/js-team/node-body-parser.git
@@ -32,12 +34,14 @@ Depends: ${misc:Depends}
  , node-content-type
  , node-debug
  , node-depd
+ , node-destroy
  , node-http-errors
  , node-iconv-lite
  , node-on-finished
  , node-qs
  , node-raw-body
  , node-type-is
+ , node-unpipe
 Provides: ${nodejs:Provides}
 Description: body parsing middleware - Node.js module
  body-parser is a Node.js module which provides connect middleware for parsing
