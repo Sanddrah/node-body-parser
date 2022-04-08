@@ -1,3 +1,11 @@
+node-body-parser (1.20.0+~1.19.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 1.20.0+~1.19.2
+  * Added new dependencies from package.json
+
+ -- Israel Galadima <izzygaladima@gmail.com>  Fri, 08 Apr 2022 10:26:51 +0000
+
 node-body-parser (1.19.2+~1.19.2-1) unstable; urgency=medium
 
   * New upstream version 1.19.2+~1.19.2
