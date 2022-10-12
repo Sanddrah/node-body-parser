@@ -1,3 +1,12 @@
+node-body-parser (1.20.1+~1.19.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 1.20.1+~1.19.2
+  * bumped up standard version to 4.6.1.0
+  * update copyright to 2022
+
+ -- sandra uwah <sandrauwah282@gmail.com>  Wed, 12 Oct 2022 18:01:51 +0000
+
 node-body-parser (1.20.0+~1.19.2-1) unstable; urgency=medium
 
   * Team upload
