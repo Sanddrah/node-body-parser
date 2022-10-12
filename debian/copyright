@@ -9,7 +9,7 @@ Copyright: 2014 Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)
 License: Expat
 
 Files: debian/*
-Copyright: 2014 Andrew Kelley <superjoe30@gmail.com>
+Copyright: 2022 Andrew Kelley <superjoe30@gmail.com>
 License: Expat
 
 Files: types-*/*
